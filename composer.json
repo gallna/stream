@@ -1,0 +1,17 @@
+{
+    "name": "gallna/stream",
+    "require": {
+        "psr/http-message": "~1.0"
+    },
+    "authors": [
+        {
+            "name": "Tomasz Jonik",
+            "email": "tom.jonik@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kemer\\Stream\\": "src/Kemer/Stream"
+        }
+    }
+}

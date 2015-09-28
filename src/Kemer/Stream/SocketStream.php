@@ -1,5 +1,5 @@
 <?php
-namespace Kemer\Stream\Stream;
+namespace Kemer\Stream;
 
 use Psr\Http\Message\StreamInterface;
 
