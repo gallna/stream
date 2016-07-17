@@ -20,6 +20,20 @@ class SocketStream implements StreamInterface
     private $metadata = [];
 
     /**
+     * @param string $uri [tcp://socket:80]
+     * @param float $timeout Number of seconds until the connect() system call should timeout.
+     *
+     * @return SocketStream
+     */
+    public static function create($uri, $timeout = 30)
+    {
+        if (!($socket = stream_socket_client($uri, $errno, $errstr, $timeout))) {
+            throw new \Exception("$errstr ($errno)");
+        }
+        return new static($socket);
+    }
+
+    /**
      * This constructor accepts an associative array of options.
      *
      * - size: (int) If a read stream would otherwise have an indeterminate
