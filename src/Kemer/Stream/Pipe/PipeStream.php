@@ -38,6 +38,28 @@ class PipeStream extends StreamWrapper
         $this->buffer = $buffer ?: new Buffer\Buffer();
     }
 
+
+    public function getSize()
+    {
+        return null;
+    }
+
+    public function isReadable()
+    {
+        return true;
+    }
+
+    public function isWritable()
+    {
+        return false;
+    }
+
+    public function isSeekable()
+    {
+        return false;
+    }
+
+
     public function getContents()
     {
         $contents = null;

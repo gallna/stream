@@ -52,6 +52,30 @@ class ReadPipeStream extends Stream
         $this->buffer = $buffer ?: new Buffer\Buffer();
     }
 
+    public function getSize()
+    {
+        return null;
+    }
+
+    public function isReadable()
+    {
+        return true;
+    }
+
+    public function isWritable()
+    {
+        return false;
+    }
+
+    public function isSeekable()
+    {
+        return false;
+    }
+
+    public function eof()
+    {
+        return false;
+    }
 
     public function getContents()
     {
