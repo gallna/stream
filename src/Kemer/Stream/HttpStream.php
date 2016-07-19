@@ -22,7 +22,12 @@ class HttpStream extends Stream
         $context = stream_context_create([
             'http' => $context
         ]);
-        $stream = fopen($url, 'rb', false, $context);
+        $stream = @fopen($url, 'rb', false, $context);
+        if (!is_resource($stream)) {
+            throw new \InvalidArgumentException(
+                "Couldn't create stream from provided url"
+            );
+        }
         stream_set_blocking($stream, 0);
         parent::__construct($stream);
     }
