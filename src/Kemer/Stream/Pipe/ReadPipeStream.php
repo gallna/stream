@@ -74,7 +74,7 @@ class ReadPipeStream extends Stream
 
     public function eof()
     {
-        return false;
+        return $this->isStarted() && $this->isTerminated();
     }
 
     public function getContents()
@@ -93,10 +93,15 @@ class ReadPipeStream extends Stream
     {
         $data = null;
         while ($this->buffer->getSize() < $length) {
-            if($data = $this->process()) {
-                $this->buffer->write($data);
-            } elseif ($this->isTerminated()) {
-                throw new ProcessException($this->procStatus('exitcode'));
+            if (!$this->isTerminated()) {
+                if($data = $this->process()) {
+                    $this->buffer->write($data);
+                }
+            } else {
+                if (0 !== ($exitcode = $this->procStatus('exitcode'))) {
+                    throw new ProcessException($exitcode);
+                }
+                return $this->buffer->read($length);
             }
         }
         return $this->buffer->read($length);
