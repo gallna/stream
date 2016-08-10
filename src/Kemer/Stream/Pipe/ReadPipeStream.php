@@ -197,8 +197,11 @@ class ReadPipeStream extends Stream
      */
     public function isTerminated()
     {
-        $this->procStatus();
-        return $this->status === self::STATUS_TERMINATED;
+        if ($this->isStarted()) {
+            $this->procStatus();
+            return $this->status === self::STATUS_TERMINATED;
+        }
+        return false;
     }
 
     /**
