@@ -1,5 +1,6 @@
 {
     "name": "gallna/stream",
+    "description": "Psr-7 stream modules",
     "require": {
         "psr/http-message": "~1.0"
     },
